@@ -14,17 +14,4 @@ public class DbService : IDbService
     {
         _context = context;
     }
-
-
-    public async Task<GetExampleDto> GetExampleById(int id)
-    {
-        var result = await _context.Examples.FirstOrDefaultAsync(e => e.ExampleId == id);
-
-        if (result == null)
-        {
-            throw new ExampleException("Example not found");
-        }
-
-        return new GetExampleDto{ Id = result.ExampleId, Name = result.Name};
-    }
 }

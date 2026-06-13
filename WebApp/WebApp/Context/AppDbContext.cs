@@ -48,12 +48,12 @@ public class AppDbContext : DbContext
         );
 
         modelBuilder.Entity<Individual>().HasData(
-            new Individual { IndividualId = 1, FirstName = "Jan", LastName = "Kowalski", AddressId = 1, Email = "jan.kowalski@wp.pl", PhoneNumber = 123456789m, Pesel = "90010112345", IsActive = true },
-            new Individual { IndividualId = 2, FirstName = "Anna", LastName = "Nowak", AddressId = 2, Email = "anna.nowak@gmail.com", PhoneNumber = 987654321m, Pesel = "95050554321", IsActive = true }
+            new Individual { IndividualId = 1, FirstName = "Jan", LastName = "Kowalski", AddressId = 1, Email = "jan.kowalski@wp.pl", PhoneNumber = "123456789", Pesel = "90010112345", IsActive = true },
+            new Individual { IndividualId = 2, FirstName = "Anna", LastName = "Nowak", AddressId = 2, Email = "anna.nowak@gmail.com", PhoneNumber = "987654321", Pesel = "95050554321", IsActive = true }
         );
 
         modelBuilder.Entity<Company>().HasData(
-            new Company { CompanyId = 1, Name = "TechCorp Sp. z o.o.", AddressId = 3, Email = "kontakt@techcorp.pl", PhoneNumber = 555666777m, KrsNumber = "0000123456" }
+            new Company { CompanyId = 1, Name = "TechCorp Sp. z o.o.", AddressId = 3, Email = "kontakt@techcorp.pl", PhoneNumber = "555666777", KrsNumber = "0000123456" }
         );
 
         modelBuilder.Entity<Client>().HasData(

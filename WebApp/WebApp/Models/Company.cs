@@ -18,9 +18,9 @@ public class Company
     
     [MaxLength(150)]
     public string Email { get; set; } = String.Empty;
-    [Precision(9,0)]
-    public decimal PhoneNumber { get; set; }
-    [MaxLength(10)]
+    [StringLength(9, MinimumLength = 9)]
+    public string PhoneNumber { get; set; } = String.Empty;
+    [StringLength(10, MinimumLength = 10)]
     public string KrsNumber { get; set; } = String.Empty;
     
     public ICollection<Client>  Client { get; set; } = new List<Client>();

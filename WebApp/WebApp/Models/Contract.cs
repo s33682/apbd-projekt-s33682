@@ -27,7 +27,7 @@ public class Contract
     
     public bool IsClientLoyal { get; set; }
     public int? AdditionalSupportYears { get; set; }
-    public bool IsPaid { get; set; } = false;
+    public bool IsPaid { get; set; }
     [Precision(10,2)]
     public decimal FullPrice { get; set; }
     

@@ -39,7 +39,7 @@ public class ContractController : ControllerBase
     }
 
     [HttpPost]
-    [Route("payment/{contractId:int}")]
+    [Route("{contractId:int}/payment")]
     public async Task<IActionResult> AddContractPayment(int contractId, PostContractPaymentDto dto)
     {
         try

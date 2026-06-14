@@ -73,7 +73,7 @@ public class ClientController : ControllerBase
     }
 
     [HttpPut]
-    [Route("individual/{clientId:int}")]
+    [Route("{clientId:int}/individual")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateIndividualClient(int  clientId, PutUpdateIndividualClientDto dto)
     {
@@ -91,7 +91,7 @@ public class ClientController : ControllerBase
     }
 
     [HttpPut]
-    [Route("company/{clientId:int}")]
+    [Route("{clientId:int}/company")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateCompanyClient(int clientId, PutUpdateCompanyClientDto dto)
     {

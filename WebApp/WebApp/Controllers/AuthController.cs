@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.DTOs;
+using WebApp.Models;
 using WebApp.Services;
 
 namespace WebApp.Controllers;
@@ -31,10 +32,10 @@ public class AuthController : ControllerBase
         }
     }
     
-    [HttpGet("generate-hash")]
+    /*[HttpGet("generate-hash")]
     public IActionResult GenerateHash(string password)
     {
-        var hasher = new Microsoft.AspNetCore.Identity.PasswordHasher<WebApp.Models.Employee>();
+        var hasher = new Microsoft.AspNetCore.Identity.PasswordHasher<Employee>();
         return Ok(hasher.HashPassword(null!, password));
-    }
+    }*/
 }

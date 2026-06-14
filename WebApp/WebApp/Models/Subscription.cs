@@ -18,7 +18,7 @@ public class Subscription
     public SoftVersion SoftVersion { get; set; } = null!;
 
     [MaxLength(100)] 
-    public string Name { get; set; } = null!;
+    public string Name { get; set; } = String.Empty;
     
     public int BillingPeriodId { get; set; }
     [ForeignKey(nameof(BillingPeriodId))] 

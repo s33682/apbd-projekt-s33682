@@ -127,7 +127,9 @@ public class AppDbContext : DbContext
             new Subscription {
                 SubscriptionId = 1, ClientId = 2, SoftVersionId = 1, Name = "Subskrypcja Księgowość Standard",
                 BillingPeriodId = 1, PeriodPrice = 500.00m, 
-                StartDate = new DateTime(2026, 6, 1, 0, 0, 0), EndDate = new DateTime(2026, 7, 1, 0, 0, 0),
+                SubscriptionStartDate = new DateTime(2026, 6, 1, 0, 0, 0),
+                PeriodStartDate = new DateTime(2026, 6, 1, 0, 0, 0), 
+                PeriodEndDate = new DateTime(2026, 7, 1, 0, 0, 0),
                 DiscountId = null, IsClientLoyal = false, IsActive = true
             }
         );
@@ -141,8 +143,9 @@ public class AppDbContext : DbContext
             new Subscription {
                 SubscriptionId = 2, ClientId = 3, SoftVersionId = 3, Name = "Subskrypcja EduPlatform Premium",
                 BillingPeriodId = 2, PeriodPrice = 10000.00m, 
-                StartDate = new DateTime(2025, 5, 10, 0, 0, 0),
-                EndDate = new DateTime(2027, 5, 10, 0, 0, 0),
+                SubscriptionStartDate = new DateTime(2025, 5, 10, 0, 0, 0),
+                PeriodStartDate = new DateTime(2026, 5, 10, 0, 0, 0),
+                PeriodEndDate = new DateTime(2027, 5, 10, 0, 0, 0),
                 DiscountId = 2, IsClientLoyal = true, IsActive = true
             }
         );

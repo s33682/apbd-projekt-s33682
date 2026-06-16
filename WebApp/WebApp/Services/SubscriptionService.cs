@@ -47,12 +47,31 @@ public class SubscriptionService : ISubsriptionService
         {
             throw new AlreadyDoneException("Contract or Subscription for specified client and software already exists and is Active!");
         }
-        
-        var checkBillingPeriod = await  _context.BillingPeriods.FirstOrDefaultAsync(bp => bp.PeriodId == dto.BillingPeriodId);
 
-        if (checkBillingPeriod == null)
+        if (dto.BillingMonthsNumber < 1 || dto.BillingMonthsNumber > 24)
         {
-            throw new NotFoundException("BillingPeriod with the provided id does not exist!");
+            throw new NotPossibleException("Billing period must be between 1 and 24 months!");
+        }
+
+        var checkBillingPeriod = await  _context.BillingPeriods.FirstOrDefaultAsync(bp => bp.MonthsNumber == dto.BillingMonthsNumber);
+
+        if (checkBillingPeriod == null){
+            var name = dto.BillingMonthsNumber switch
+            {
+                24 => "Dwuletni",
+                12 => "Roczny",
+                6 => "Półroczny",
+                1 => "Miesięczny",
+                _ => "Custom"
+            };
+
+            checkBillingPeriod = new BillingPeriod
+            {
+                Type = name,
+                MonthsNumber = dto.BillingMonthsNumber
+            };
+        
+            await _context.BillingPeriods.AddAsync(checkBillingPeriod);
         }
         
         var timeNow = DateTime.Now;
@@ -80,8 +99,9 @@ public class SubscriptionService : ISubsriptionService
             Name = dto.Name,
             BillingPeriod = checkBillingPeriod,
             PeriodPrice =  periodPrice,
-            StartDate = timeNow,
-            EndDate = timeNow.AddMonths(checkBillingPeriod.MonthsNumber),
+            SubscriptionStartDate = timeNow,
+            PeriodStartDate = timeNow,
+            PeriodEndDate = timeNow.AddMonths(checkBillingPeriod.MonthsNumber),
             Discount = bestDiscount,
             IsClientLoyal = hadSubscription || hadPayedContract
         };
@@ -119,7 +139,7 @@ public class SubscriptionService : ISubsriptionService
             throw new NotPossibleException("This subscription belongs to other client!");
         }
         
-        var maxPaymentDate = checkSubscription.EndDate.AddMonths(checkSubscription.BillingPeriod.MonthsNumber);
+        var maxPaymentDate = checkSubscription.PeriodEndDate.AddMonths(checkSubscription.BillingPeriod.MonthsNumber);
         var today = DateTime.Now;
 
         if (today > maxPaymentDate)
@@ -129,7 +149,7 @@ public class SubscriptionService : ISubsriptionService
             throw new AlreadyDoneException("You are late with payment! Subscription is canceled!");
         }
 
-        if (today < checkSubscription.EndDate)
+        if (today < checkSubscription.PeriodEndDate)
         {
             throw new NotPossibleException("You had already paid for this period!");
         }
@@ -148,8 +168,8 @@ public class SubscriptionService : ISubsriptionService
         
         _context.SubscriptionPayments.Add(newSubscriptionPayment);
         
-        checkSubscription.StartDate = checkSubscription.EndDate;
-        checkSubscription.EndDate = checkSubscription.EndDate.AddMonths(checkSubscription.BillingPeriod.MonthsNumber);
+        checkSubscription.PeriodStartDate = checkSubscription.PeriodEndDate;
+        checkSubscription.PeriodEndDate = checkSubscription.PeriodEndDate.AddMonths(checkSubscription.BillingPeriod.MonthsNumber);
         
         await _context.SaveChangesAsync();
     }

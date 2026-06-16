@@ -17,7 +17,7 @@ public class SubscriptionExpirationJob
         var today = DateTime.Now;
 
         var expiredSubscriptions = await _context.Subscriptions
-            .Where(s => s.IsActive && s.EndDate.AddMonths(s.BillingPeriod.MonthsNumber) < today)
+            .Where(s => s.IsActive && s.PeriodEndDate.AddMonths(s.BillingPeriod.MonthsNumber) < today)
             .ToListAsync();
 
         foreach (var expiredSubscription in expiredSubscriptions)

@@ -8,6 +8,5 @@ public class PostCreateSubscriptionDto
     public int SoftVersionId { get; set; }
     [MaxLength(100)] 
     public string Name { get; set; } = String.Empty;
-    public int BillingPeriodId { get; set; }
-    public int? DiscountId { get; set; }
+    public int BillingMonthsNumber { get; set; }
 }

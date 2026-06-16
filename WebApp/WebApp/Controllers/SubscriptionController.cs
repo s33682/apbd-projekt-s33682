@@ -30,9 +30,14 @@ public class SubscriptionController : ControllerBase
         catch (NotFoundException ex)
         {
             return NotFound(ex.Message);
-        }catch(AlreadyDoneException ex)
+        }
+        catch (AlreadyDoneException ex)
         {
             return Conflict(ex.Message);
+        }
+        catch (NotPossibleException ex)
+        {
+            return BadRequest(ex.Message);
         }
     }
 

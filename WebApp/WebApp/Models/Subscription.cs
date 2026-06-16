@@ -26,8 +26,10 @@ public class Subscription
     
     [Precision(10,2)]
     public decimal PeriodPrice { get; set; }
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
+    
+    public DateTime SubscriptionStartDate { get; set; }
+    public DateTime PeriodStartDate { get; set; }
+    public DateTime PeriodEndDate { get; set; }
     
     public int? DiscountId { get; set; }
     [ForeignKey(nameof(DiscountId))]

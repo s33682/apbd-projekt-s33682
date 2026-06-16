@@ -1,0 +1,9 @@
+﻿.swagger-ui .info__description a[href="/hangfire"] {
+    display: inline-block !important;
+    padding: 10px 18px !important;
+    background: #007bff !important;
+    color: #fff !important;
+    border-radius: 6px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+}

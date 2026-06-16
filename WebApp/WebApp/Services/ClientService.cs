@@ -64,7 +64,7 @@ public class ClientService : IClientService
             
             await _context.Database.CommitTransactionAsync();
         }
-        catch(Exception ex)
+        catch
         {
             await transaction.RollbackAsync();
             throw;
@@ -120,7 +120,7 @@ public class ClientService : IClientService
             
             await _context.Database.CommitTransactionAsync();
         }
-        catch(Exception ex)
+        catch
         {
             await transaction.RollbackAsync();
             throw;
@@ -205,7 +205,7 @@ public class ClientService : IClientService
             await _context.SaveChangesAsync();
             await _context.Database.CommitTransactionAsync();
             
-        }catch(Exception ex)
+        }catch
         {
             await transaction.RollbackAsync();
             throw;
@@ -262,7 +262,7 @@ public class ClientService : IClientService
             await _context.SaveChangesAsync();
             await _context.Database.CommitTransactionAsync();
             
-        }catch(Exception ex)
+        }catch
         {
             await transaction.RollbackAsync();
             throw;

@@ -162,7 +162,7 @@ public class ContractService : IContractService
             
             await transaction.CommitAsync();
         }
-        catch (Exception e)
+        catch
         {
             await transaction.RollbackAsync();
             throw;

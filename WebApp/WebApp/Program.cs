@@ -13,6 +13,10 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IContractService, ContractService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<ISubsriptionService, SubscriptionService>();
+builder.Services.AddScoped<IRevenueService, RevenueService>();
+
+builder.Services.AddHttpClient<ICurrencyService, CurrencyService>();
+
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddOpenApi(options =>

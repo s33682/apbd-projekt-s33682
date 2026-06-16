@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Context;
 
@@ -11,9 +12,11 @@ using WebApp.Context;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260616200504_RevorkedSubscription")]
+    partial class RevorkedSubscription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,19 +293,6 @@ namespace WebApp.Migrations
                             MaximumPaymentDate = new DateOnly(2026, 6, 25),
                             MinimumPaymentDate = new DateOnly(2026, 6, 5),
                             SoftVersionId = 3
-                        },
-                        new
-                        {
-                            ContractId = 3,
-                            AdditionalSupportYears = 0,
-                            ClientId = 2,
-                            FullPrice = 5000.00m,
-                            IsActive = true,
-                            IsClientLoyal = false,
-                            IsPaid = false,
-                            MaximumPaymentDate = new DateOnly(2026, 6, 1),
-                            MinimumPaymentDate = new DateOnly(2026, 5, 10),
-                            SoftVersionId = 1
                         });
                 });
 
@@ -356,14 +346,6 @@ namespace WebApp.Migrations
                             Amount = 4000.00m,
                             ContractId = 2,
                             CreatedAt = new DateTime(2026, 6, 15, 14, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsRefunded = false
-                        },
-                        new
-                        {
-                            PaymentId = 4,
-                            Amount = 1000.00m,
-                            ContractId = 3,
-                            CreatedAt = new DateTime(2026, 5, 15, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             IsRefunded = false
                         });
                 });
@@ -811,20 +793,6 @@ namespace WebApp.Migrations
                             PeriodStartDate = new DateTime(2026, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoftVersionId = 3,
                             SubscriptionStartDate = new DateTime(2025, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            SubscriptionId = 3,
-                            BillingPeriodId = 1,
-                            ClientId = 1,
-                            IsActive = true,
-                            IsClientLoyal = false,
-                            Name = "Porzucona subskrypcja",
-                            PeriodEndDate = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PeriodPrice = 200.00m,
-                            PeriodStartDate = new DateTime(2026, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoftVersionId = 2,
-                            SubscriptionStartDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 

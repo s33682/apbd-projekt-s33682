@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using WebApp.Models;
+﻿using WebApp.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApp.Context;
@@ -153,6 +152,32 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<SubscriptionPayment>().HasData(
             new SubscriptionPayment { PaymentId = 2, SubscriptionId = 2, Amount = 10000.00m, PaymentDate = new DateTime(2025, 5, 10, 11, 0, 0) },
             new SubscriptionPayment { PaymentId = 3, SubscriptionId = 2, Amount = 9500.00m, PaymentDate = new DateTime(2026, 5, 9, 10, 20, 0) }
+        );
+        
+        // Subskrypcja i kontrakt dla hangfire
+        // Przeterminowany kontrakt
+        modelBuilder.Entity<Contract>().HasData(
+            new Contract { 
+                ContractId = 3, ClientId = 2, SoftVersionId = 1, 
+                MinimumPaymentDate = new DateOnly(2026, 5, 10), 
+                MaximumPaymentDate = new DateOnly(2026, 6, 1),
+                IsActive = true, DiscountId = null, IsClientLoyal = false, AdditionalSupportYears = 0, 
+                IsPaid = false, FullPrice = 5000.00m 
+            }
+        );
+        modelBuilder.Entity<ContractPayment>().HasData(
+            new ContractPayment { PaymentId = 4, ContractId = 3, Amount = 1000.00m, IsRefunded = false, CreatedAt = new DateTime(2026, 5, 15, 10, 0, 0) }
+        );
+        // Przeterminowana subskrypcja
+        modelBuilder.Entity<Subscription>().HasData(
+            new Subscription {
+                SubscriptionId = 3, ClientId = 1, SoftVersionId = 2, Name = "Porzucona subskrypcja",
+                BillingPeriodId = 1, PeriodPrice = 200.00m, 
+                SubscriptionStartDate = new DateTime(2026, 1, 1, 0, 0, 0),
+                PeriodStartDate = new DateTime(2026, 4, 1, 0, 0, 0), 
+                PeriodEndDate = new DateTime(2026, 5, 1, 0, 0, 0),
+                DiscountId = null, IsClientLoyal = false, IsActive = true
+            }
         );
     }
 }

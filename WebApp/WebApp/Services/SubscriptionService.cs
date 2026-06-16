@@ -151,7 +151,7 @@ public class SubscriptionService : ISubsriptionService
 
         if (today < checkSubscription.PeriodEndDate)
         {
-            throw new NotPossibleException("You had already paid for this period!");
+            throw new AlreadyDoneException("You had already paid for this period!");
         }
 
         if (checkSubscription.PeriodPrice != dto.Amount)
